@@ -75,9 +75,9 @@ Home Credit Data (previous_application.csv + application_train.csv)
 | Causal | Placebo test p-value | 0.38 (non-significant ✅) |
 | Model | XGBoost CV AUC | 0.7375 |
 | Model | LightGBM CV AUC | 0.7408 |
-| Challenger | AUC lift vs champion | +0.0071 |
+| Challenger | AUC lift vs champion | +0.0067 |
 | Challenger | Champion/Challenger p-value | <0.001 |
-| Challenger | Statistical power at 2% MDE | 65.9% |
+| Challenger | Statistical power at 2% MDE | 64.5% |
 | Observability | Max PSI drift | 0.0017 (stable) |
 | Observability | PSI alerts fired | 0 |
 
@@ -97,7 +97,7 @@ $$\hat{\tau}_{DiD} = (\bar{Y}_{treat,post} - \bar{Y}_{treat,pre}) - (\bar{Y}_{ct
 XGBoost and LightGBM trained on 120+ applicant features with StratifiedKFold CV. SHAP TreeExplainer computes per-inference feature attribution. LightGBM selected as champion (AUC 0.7408 vs XGBoost 0.7375).
 
 **Module 4 — Champion/Challenger:**
-80/20 traffic split across 100 simulation rounds. Monte Carlo power curves compute MDE and required sample sizes. Challenger (LightGBM) achieved statistically significant AUC lift of +0.0071 (p<0.001, Cohen's d computed). Power analysis confirms 65.9% power at 2% MDE with n=5,000 per group.
+80/20 traffic split across 100 simulation rounds. Monte Carlo power curves compute MDE and required sample sizes. Challenger (LightGBM) achieved statistically significant AUC lift of +0.0067 (p<0.001, Cohen's d computed). Power analysis confirms 64.5% power at 2% MDE with n=5,000 per group.
 
 **Module 5 — Observability:**
 Population Stability Index (PSI > 0.25 = alert), KS-Test (p < 0.05 = alert), Statistical Process Control (3-sigma limits on conversion rate). Max PSI of 0.0017 confirms model stability. MLflow governance log tagged `audit_ready`.
