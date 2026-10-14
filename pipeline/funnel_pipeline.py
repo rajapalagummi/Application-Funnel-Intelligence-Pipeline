@@ -56,7 +56,7 @@ def _synthetic_funnel(con):
     )
     days_decision = np.random.randint(-1000, 0, size=n)
     rate_down = np.random.uniform(0, 0.5, size=n)
-    flag_last = np.random.randint(0, 2, size=n)
+    flag_last = np.random.choice(['Y', 'N'], size=n)
     hour_appr = np.random.randint(8, 20, size=n)
     client_type = np.random.choice(["New", "Repeater", "Refreshed"], size=n)
 
