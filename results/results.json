@@ -1,0 +1,185 @@
+{
+  "funnel_summary": {
+    "total": 1277812,
+    "conversion_rate": 77.59
+  },
+  "causal": {
+    "converted": {
+      "parallel_trends": {
+        "p_value": 0.0159,
+        "satisfied": false
+      },
+      "did": {
+        "outcome": "converted",
+        "did_estimate": 0.158803,
+        "se": 0.000368,
+        "t_stat": 431.3671,
+        "p_value": 0.0,
+        "significant": "True",
+        "ci_lower": 0.1581,
+        "ci_upper": 0.1595,
+        "treat_pre": 0.6719,
+        "treat_post": 0.8307,
+        "ctrl_pre": 0.0,
+        "ctrl_post": 0.0
+      },
+      "placebo": {
+        "outcome": "converted",
+        "did_estimate": 0.086986,
+        "se": 0.000722,
+        "t_stat": 120.518,
+        "p_value": 0.0,
+        "significant": "True",
+        "ci_lower": 0.0856,
+        "ci_upper": 0.0884,
+        "treat_pre": 0.6286,
+        "treat_post": 0.7155,
+        "ctrl_pre": 0.0,
+        "ctrl_post": 0.0,
+        "test_type": "placebo"
+      }
+    },
+    "submitted": {
+      "parallel_trends": {
+        "p_value": 0.3502,
+        "satisfied": true
+      },
+      "did": {
+        "outcome": "submitted",
+        "did_estimate": 0.014818,
+        "se": 0.005546,
+        "t_stat": 2.6719,
+        "p_value": 0.0075,
+        "significant": "True",
+        "ci_lower": 0.0039,
+        "ci_upper": 0.0257,
+        "treat_pre": 0.7402,
+        "treat_post": 0.9082,
+        "ctrl_pre": 0.0768,
+        "ctrl_post": 0.23
+      },
+      "placebo": {
+        "outcome": "submitted",
+        "did_estimate": 0.057992,
+        "se": 0.005395,
+        "t_stat": 10.7498,
+        "p_value": 0.0,
+        "significant": "True",
+        "ci_lower": 0.0474,
+        "ci_upper": 0.0686,
+        "treat_pre": 0.6934,
+        "treat_post": 0.7872,
+        "ctrl_pre": 0.0627,
+        "ctrl_post": 0.0985,
+        "test_type": "placebo"
+      }
+    }
+  },
+  "model": {
+    "cv_results": {
+      "xgb_mean_auc": 0.7375,
+      "xgb_std_auc": 0.0006,
+      "lgb_mean_auc": 0.7408,
+      "lgb_std_auc": 0.0007,
+      "n_folds": 5
+    },
+    "champion": "LightGBM",
+    "shap_importance": {
+      "AMT_APPLICATION": 0.4619,
+      "days_since_decision": 0.2554,
+      "EXT_SOURCE_3": 0.2144,
+      "AMT_CREDIT": 0.0909,
+      "DAYS_BIRTH": 0.082,
+      "policy_group_enc": 0.0611,
+      "AMT_INCOME_TOTAL": 0.0394,
+      "DAYS_EMPLOYED": 0.0386,
+      "EXT_SOURCE_2": 0.0296,
+      "EXT_SOURCE_1": 0.0162
+    }
+  },
+  "experimentation": {
+    "power_analysis": {
+      "baseline_rate": 0.22408225936209708,
+      "effect_size": 0.02,
+      "n_per_group": 5000,
+      "n_simulations": 1000,
+      "statistical_power": 0.637,
+      "mean_estimated_effect": 0.0199,
+      "ci_lower": 0.0028,
+      "ci_upper": 0.0374
+    },
+    "power_curve": [
+      {
+        "baseline_rate": 0.22408225936209708,
+        "effect_size": 0.01,
+        "n_per_group": 5000,
+        "n_simulations": 500,
+        "statistical_power": 0.216,
+        "mean_estimated_effect": 0.01,
+        "ci_lower": -0.0069,
+        "ci_upper": 0.028
+      },
+      {
+        "baseline_rate": 0.22408225936209708,
+        "effect_size": 0.02,
+        "n_per_group": 5000,
+        "n_simulations": 500,
+        "statistical_power": 0.628,
+        "mean_estimated_effect": 0.0199,
+        "ci_lower": 0.0029,
+        "ci_upper": 0.0352
+      },
+      {
+        "baseline_rate": 0.22408225936209708,
+        "effect_size": 0.03,
+        "n_per_group": 5000,
+        "n_simulations": 500,
+        "statistical_power": 0.94,
+        "mean_estimated_effect": 0.0299,
+        "ci_lower": 0.0133,
+        "ci_upper": 0.0466
+      },
+      {
+        "baseline_rate": 0.22408225936209708,
+        "effect_size": 0.05,
+        "n_per_group": 5000,
+        "n_simulations": 500,
+        "statistical_power": 1.0,
+        "mean_estimated_effect": 0.0505,
+        "ci_lower": 0.0345,
+        "ci_upper": 0.068
+      },
+      {
+        "baseline_rate": 0.22408225936209708,
+        "effect_size": 0.08,
+        "n_per_group": 5000,
+        "n_simulations": 500,
+        "statistical_power": 1.0,
+        "mean_estimated_effect": 0.0802,
+        "ci_lower": 0.0649,
+        "ci_upper": 0.0973
+      }
+    ],
+    "champion_challenger": {
+      "champion_mean_auc": 0.7434,
+      "challenger_mean_auc": 0.7502,
+      "auc_lift": 0.0069,
+      "p_value": 0.0,
+      "significant": "True",
+      "cohens_d": 25.3033,
+      "mean_conversion_lift": 0.0017,
+      "traffic_split": 0.2,
+      "n_rounds": 100
+    }
+  },
+  "observability": {
+    "max_psi": 0.0017,
+    "psi_alerts": 0,
+    "ks_alerts": 5,
+    "spc": {
+      "mean": 0.5475,
+      "ucl": 0.5548,
+      "lcl": 0.5403
+    }
+  }
+}
