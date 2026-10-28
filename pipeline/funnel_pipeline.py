@@ -1,6 +1,4 @@
 import duckdb
-import pandas as pd
-import numpy as np
 from pathlib import Path
 
 RAW_DIR = Path("data/raw")
@@ -26,10 +24,8 @@ def load_raw_data(con):
     prev_app_path = RAW_DIR / "previous_application.csv"
     app_train_path = RAW_DIR / "application_train.csv"
 
-    if not prev_app_path.exists():
-        print("Home Credit data not found. Run: kaggle datasets download -d home-credit/home-credit-credit-risk-model-stability")
-        print("Generating synthetic funnel data for demonstration...")
-        return _synthetic_funnel(con)
+    if not (prev_app_path.exists() and app_train_path.exists()):
+        raise FileNotFoundError(f"Home Credit files missing in {RAW_DIR}: need previous_application.csv and application_train.csv")
 
     con.execute(f"""
         CREATE OR REPLACE TABLE previous_application AS
@@ -39,62 +35,6 @@ def load_raw_data(con):
         CREATE OR REPLACE TABLE application_train AS
         SELECT * FROM read_csv_auto('{app_train_path}')
     """)
-    return True
-
-
-def _synthetic_funnel(con):
-    np.random.seed(42)
-    n = 50000
-    statuses = np.random.choice(
-        ["Approved", "Refused", "Canceled", "Unused offer"],
-        size=n, p=[0.35, 0.30, 0.25, 0.10]
-    )
-    reject_reasons = np.where(
-        statuses == "Refused",
-        np.random.choice(["HC", "LIMIT", "SCO", "VERIF", "XAP"], size=n),
-        "XAP"
-    )
-    days_decision = np.random.randint(-1000, 0, size=n)
-    rate_down = np.random.uniform(0, 0.5, size=n)
-    flag_last = np.random.choice(['Y', 'N'], size=n)
-    hour_appr = np.random.randint(8, 20, size=n)
-    client_type = np.random.choice(["New", "Repeater", "Refreshed"], size=n)
-
-    df = pd.DataFrame({
-        "SK_ID_PREV": range(n),
-        "SK_ID_CURR": np.random.randint(100000, 500000, size=n),
-        "NAME_CONTRACT_STATUS": statuses,
-        "CODE_REJECT_REASON": reject_reasons,
-        "DAYS_DECISION": days_decision,
-        "RATE_DOWN_PAYMENT": rate_down,
-        "FLAG_LAST_APPL_PER_CONTRACT": flag_last,
-        "HOUR_APPR_PROCESS_START": hour_appr,
-        "NAME_CLIENT_TYPE": client_type,
-        "AMT_APPLICATION": np.random.lognormal(10, 1, size=n),
-        "AMT_CREDIT": np.random.lognormal(10, 1, size=n),
-        "CNT_PAYMENT": np.random.randint(6, 60, size=n),
-    })
-
-    app_df = pd.DataFrame({
-        "SK_ID_CURR": range(100000, 150000),
-        "TARGET": np.random.binomial(1, 0.08, size=50000),
-        "EXT_SOURCE_1": np.random.uniform(0, 1, size=50000),
-        "EXT_SOURCE_2": np.random.uniform(0, 1, size=50000),
-        "EXT_SOURCE_3": np.random.uniform(0, 1, size=50000),
-        "AMT_INCOME_TOTAL": np.random.lognormal(11, 0.5, size=50000),
-        "AMT_CREDIT": np.random.lognormal(12, 0.5, size=50000),
-        "DAYS_BIRTH": np.random.randint(-25000, -6000, size=50000),
-        "DAYS_EMPLOYED": np.random.randint(-10000, 0, size=50000),
-        "FLAG_DOCUMENT_3": np.random.randint(0, 2, size=50000),
-        "FLAG_DOCUMENT_6": np.random.randint(0, 2, size=50000),
-        "NAME_CONTRACT_TYPE": np.random.choice(["Cash loans", "Revolving loans"], size=50000),
-        "CODE_GENDER": np.random.choice(["M", "F"], size=50000),
-        "NAME_INCOME_TYPE": np.random.choice(["Working", "Commercial associate", "Pensioner"], size=50000),
-    })
-
-    con.execute("CREATE OR REPLACE TABLE previous_application AS SELECT * FROM df")
-    con.execute("CREATE OR REPLACE TABLE application_train AS SELECT * FROM app_df")
-    print("Synthetic data generated: 50K previous applications, 50K current applications")
     return True
 
 
@@ -178,5 +118,7 @@ def run_module1():
     load_raw_data(con)
     build_funnel_stages(con)
     metrics, summary = compute_stage_metrics(con)
+    summary["data_source"] = "home_credit_real"
+    summary["rows"] = {t: con.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0] for t in ["previous_application", "application_train", "funnel_stages"]}
     con.close()
     return metrics, summary

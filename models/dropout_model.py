@@ -24,7 +24,7 @@ def load_model_data(con):
         df = funnel.merge(app, on="SK_ID_CURR", how="left")
     else:
         df = funnel.copy()
-        df["TARGET"] = (df["final_stage"] < 5).astype(int)
+        df["drop_off_target"] = (df["final_stage"] < 5).astype(int)
 
     return df
 

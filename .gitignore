@@ -1,6 +1,7 @@
 venv/
 __pycache__/
 *.pyc
-data/
+data/*
 mlruns.db
 .DS_Store
+!data/outputs/

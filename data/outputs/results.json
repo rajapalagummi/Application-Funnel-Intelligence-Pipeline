@@ -1,7 +1,13 @@
 {
   "funnel_summary": {
     "total": 1277812,
-    "conversion_rate": 77.59
+    "conversion_rate": 77.59,
+    "data_source": "home_credit_real",
+    "rows": {
+      "previous_application": 1670214,
+      "application_train": 307511,
+      "funnel_stages": 1277812
+    }
   },
   "causal": {
     "converted": {
@@ -103,10 +109,10 @@
       "effect_size": 0.02,
       "n_per_group": 5000,
       "n_simulations": 1000,
-      "statistical_power": 0.637,
-      "mean_estimated_effect": 0.0199,
-      "ci_lower": 0.0028,
-      "ci_upper": 0.0374
+      "statistical_power": 0.651,
+      "mean_estimated_effect": 0.0201,
+      "ci_lower": 0.0038,
+      "ci_upper": 0.0364
     },
     "power_curve": [
       {
@@ -114,30 +120,30 @@
         "effect_size": 0.01,
         "n_per_group": 5000,
         "n_simulations": 500,
-        "statistical_power": 0.216,
-        "mean_estimated_effect": 0.01,
-        "ci_lower": -0.0069,
-        "ci_upper": 0.028
+        "statistical_power": 0.232,
+        "mean_estimated_effect": 0.0098,
+        "ci_lower": -0.0078,
+        "ci_upper": 0.0262
       },
       {
         "baseline_rate": 0.22408225936209708,
         "effect_size": 0.02,
         "n_per_group": 5000,
         "n_simulations": 500,
-        "statistical_power": 0.628,
-        "mean_estimated_effect": 0.0199,
-        "ci_lower": 0.0029,
-        "ci_upper": 0.0352
+        "statistical_power": 0.678,
+        "mean_estimated_effect": 0.0204,
+        "ci_lower": 0.0034,
+        "ci_upper": 0.0359
       },
       {
         "baseline_rate": 0.22408225936209708,
         "effect_size": 0.03,
         "n_per_group": 5000,
         "n_simulations": 500,
-        "statistical_power": 0.94,
-        "mean_estimated_effect": 0.0299,
-        "ci_lower": 0.0133,
-        "ci_upper": 0.0466
+        "statistical_power": 0.952,
+        "mean_estimated_effect": 0.0303,
+        "ci_lower": 0.0153,
+        "ci_upper": 0.0471
       },
       {
         "baseline_rate": 0.22408225936209708,
@@ -146,8 +152,8 @@
         "n_simulations": 500,
         "statistical_power": 1.0,
         "mean_estimated_effect": 0.0505,
-        "ci_lower": 0.0345,
-        "ci_upper": 0.068
+        "ci_lower": 0.0329,
+        "ci_upper": 0.0675
       },
       {
         "baseline_rate": 0.22408225936209708,
@@ -155,18 +161,18 @@
         "n_per_group": 5000,
         "n_simulations": 500,
         "statistical_power": 1.0,
-        "mean_estimated_effect": 0.0802,
-        "ci_lower": 0.0649,
-        "ci_upper": 0.0973
+        "mean_estimated_effect": 0.0806,
+        "ci_lower": 0.0647,
+        "ci_upper": 0.0983
       }
     ],
     "champion_challenger": {
-      "champion_mean_auc": 0.7434,
-      "challenger_mean_auc": 0.7502,
-      "auc_lift": 0.0069,
+      "champion_mean_auc": 0.7433,
+      "challenger_mean_auc": 0.7505,
+      "auc_lift": 0.0072,
       "p_value": 0.0,
       "significant": "True",
-      "cohens_d": 25.3033,
+      "cohens_d": 27.1362,
       "mean_conversion_lift": 0.0017,
       "traffic_split": 0.2,
       "n_rounds": 100
