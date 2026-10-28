@@ -1,0 +1,34 @@
+{
+  "data_source": "home_credit_real",
+  "sources": [
+    "application_train",
+    "previous_application"
+  ],
+  "rows_total": 307511,
+  "default_rate_total": 0.0807,
+  "rows": {
+    "train": 184506,
+    "val": 61502,
+    "test": 61503
+  },
+  "default_rate": {
+    "train": 0.0807,
+    "val": 0.0807,
+    "test": 0.0807
+  },
+  "n_features": 125,
+  "n_numeric": 109,
+  "n_categorical": 16,
+  "split": "60/20/20 stratified, seed 42",
+  "id_overlap": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "leakage_threshold_auc": 0.9,
+  "leakage_flags": [],
+  "max_univariate_auc": {
+    "feature": "EXT_SOURCE_2",
+    "auc": 0.6554
+  }
+}

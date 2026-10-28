@@ -1,0 +1,64 @@
+{
+  "runs": [
+    {
+      "timestamp": "2026-10-27T22:28:15",
+      "model": "mistral",
+      "attempts": 1,
+      "retries": 0,
+      "numbers_checked": 31,
+      "numbers_supported": 31,
+      "status": "approved",
+      "unsupported": []
+    },
+    {
+      "timestamp": "2026-10-27T22:28:45",
+      "model": "mistral",
+      "attempts": 1,
+      "retries": 0,
+      "numbers_checked": 29,
+      "numbers_supported": 29,
+      "status": "approved",
+      "unsupported": []
+    },
+    {
+      "timestamp": "2026-10-27T22:29:15",
+      "model": "mistral",
+      "attempts": 1,
+      "retries": 0,
+      "numbers_checked": 29,
+      "numbers_supported": 29,
+      "status": "approved",
+      "unsupported": []
+    },
+    {
+      "timestamp": "2026-10-27T22:29:45",
+      "model": "mistral",
+      "attempts": 1,
+      "retries": 0,
+      "numbers_checked": 29,
+      "numbers_supported": 29,
+      "status": "approved",
+      "unsupported": []
+    },
+    {
+      "timestamp": "2026-10-27T22:30:15",
+      "model": "mistral",
+      "attempts": 1,
+      "retries": 0,
+      "numbers_checked": 29,
+      "numbers_supported": 29,
+      "status": "approved",
+      "unsupported": []
+    }
+  ],
+  "summary": {
+    "total_runs": 5,
+    "approved": 5,
+    "human_review": 0,
+    "approved_first_attempt": 5,
+    "total_retries": 0,
+    "numbers_checked_total": 147,
+    "numbers_supported_total": 147,
+    "guardrail_pass_rate": 1.0
+  }
+}
